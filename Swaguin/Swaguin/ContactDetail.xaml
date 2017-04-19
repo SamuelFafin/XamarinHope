@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Swaguin.ContactDetail"
+             xmlns:infrastructure="clr-namespace:XamarinUniversity.Infrastructure;assembly=XamU.Infrastructure"
+             xmlns:viewModels="clr-namespace:Swaguin.ViewModels;assembly=Swaguin"
+             BindingContext="{infrastructure:DependencyService Type={x:Type viewModels:ContactListViewModel}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Icon="ic_delete.png" Command="{Binding DeleteContact}" CommandParameter="{Binding SelectedContact}" />
+        <ToolbarItem Text="Edit" Icon="ic_edit.png" Command="{Binding EditContact}" CommandParameter="{Binding SelectedContact}" />
+        <ToolbarItem Text="Email" Icon="ic_edit.png" Command="{Binding SendEmail}" CommandParameter="{Binding SelectedContact}" />
+        <ToolbarItem Text="Call" Icon="ic_edit.png" Command="{Binding Call}" CommandParameter="{Binding SelectedContact}" />
+        <ToolbarItem Text="Sms" Icon="ic_edit.png" Command="{Binding Sms}" CommandParameter="{Binding SelectedContact}" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid RowSpacing="10" Padding="5" BindingContext="{Binding SelectedContact}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label FontSize="Large" Text="{Binding FirstName}" 
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+    </Grid>
+
+</ContentPage>

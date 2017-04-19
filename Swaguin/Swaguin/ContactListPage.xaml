@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             x:Name="RootPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Swaguin.ContactListPage"
+             xmlns:infrastructure="clr-namespace:XamarinUniversity.Infrastructure;assembly=XamU.Infrastructure"
+		     xmlns:viewModels="clr-namespace:Swaguin.ViewModels;assembly=Swaguin"
+             Title="Quotes" Icon = "ic_action_chat.png"
+             BindingContext="{infrastructure:DependencyService Type={x:Type viewModels:ContactListViewModel}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Icon="ic_action_new.png" Command="{Binding AddContact}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ItemTappedValueConverter xmlns="clr-namespace:Swaguin.Converters;assembly=Swaguin" x:Key="itemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView ItemsSource="{Binding Contacts}" SeparatorColor="#c0c0c0"  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+        <ListView.Behaviors>
+            <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ShowContactDetail}" EventArgsConverter="{StaticResource itemTappedConverter}" />
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding FirstName}">
+                </TextCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
