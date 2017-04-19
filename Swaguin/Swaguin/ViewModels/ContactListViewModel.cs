@@ -28,7 +28,8 @@ namespace Swaguin.ViewModels
         // Liste de tous les contacts disponibles dans la base de données
         public ObservableCollection<ContactViewModel> Contacts { get; private set; }
 
-
+        public string Filter { get; set; }
+        
         // Déclaration des différentes ICommand
         public ICommand AddContact { get; private set; }
         public ICommand DeleteContact { get; private set; }
@@ -37,6 +38,7 @@ namespace Swaguin.ViewModels
         public ICommand SendEmail { get; private set; }
         public ICommand Call { get; private set; }
         public ICommand Sms { get; private set; }
+        public ICommand FilterContactList { get; set; }
 
 
         // Contact sélectionné dans l'application
@@ -78,7 +80,8 @@ namespace Swaguin.ViewModels
             ShowContactDetail = new Command<ContactViewModel>(async qvm => await OnShowContactDetails(qvm));
             SendEmail = new Command<ContactViewModel>(OnSendMail);
             Call = new Command<ContactViewModel>(OnCall);
-            Sms = new Command<ContactViewModel>(OnSms);  
+            Sms = new Command<ContactViewModel>(OnSms);
+            FilterContactList = new Command(OnFilterContact);
         }
 
         // Ajouter un contact en redirigeant vers la page d'édition
@@ -163,6 +166,11 @@ namespace Swaguin.ViewModels
         private void OnSms(ContactViewModel contact)
         {
             Device.OpenUri(new Uri("smsto:" + contact.PhoneNumber));
+        }
+
+        private void OnFilterContact()
+        {
+            Contacts = new ObservableCollection<ContactViewModel>(Contacts.Where((Contact) => Contact.FirstName.ToLower().Contains(Filter)));
         }
     }
 }

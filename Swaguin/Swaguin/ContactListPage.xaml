@@ -19,15 +19,22 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView ItemsSource="{Binding Contacts}" SeparatorColor="#c0c0c0"  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
-        <ListView.Behaviors>
-            <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ShowContactDetail}" EventArgsConverter="{StaticResource itemTappedConverter}" />
-        </ListView.Behaviors>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding FirstName}">
-                </TextCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    
+    <StackLayout>
+        <SearchBar Placeholder="Filter" SearchCommand="{Binding FilterContactList}" Text="{Binding Filter}"></SearchBar>
+        <ScrollView>
+            <ListView ItemsSource="{Binding Contacts}" SeparatorColor="#c0c0c0"  SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+                <ListView.Behaviors>
+                    <infrastructure:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ShowContactDetail}" EventArgsConverter="{StaticResource itemTappedConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+   
 </ContentPage>
