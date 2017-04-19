@@ -94,9 +94,6 @@ namespace Swaguin.ViewModels
                 await serviceLocator.Get<INavigationService>()
                                    .NavigateAsync(AppPages.Edit, newContact);
             }
-
-            // Trouver à quel moment sauvegarder  
-            //await App.ContactRepo.AddNewContactAsync(newContact.Model);
         }
 
         // Détailler les informations d'un contact en redirigeant vers la page de détail
