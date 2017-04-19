@@ -23,7 +23,6 @@ namespace Swaguin.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             string dbPath = FileAccessHelper.GetLocalFilePath("HopeDB.db3");
-            var email = new Intent(Android.Content.Intent.ActionSend);
 
             LoadApplication(new App(dbPath));
         }
