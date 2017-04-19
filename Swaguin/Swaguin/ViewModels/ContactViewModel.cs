@@ -3,13 +3,19 @@ using Swaguin.Model;
 using System;
 using System.Threading.Tasks;
 
+// ==============================
+// ViewModel permettant d'accéder au Model Contact
+// ==============================
+
 namespace Swaguin.ViewModels
 {
     public class ContactViewModel : SimpleViewModel
     {
+        // Instance d'un contact
         readonly Contact contact;
         private ContactViewModel q;
 
+        // Constructeur
         public ContactViewModel()
             : this(new Contact())
         {
@@ -23,16 +29,19 @@ namespace Swaguin.ViewModels
             ImagePath = "";            
         }
 
+        // Constructeur
         public ContactViewModel(Contact contact)
         {
             this.contact = contact;
         }
 
+        // Constructeur
         public ContactViewModel(ContactViewModel q)
         {
             this.q = q;
         }
 
+        // Get et Set pour l'attribut FirstName
         public string FirstName
         {
             get { return contact.FirstName; }
@@ -47,6 +56,7 @@ namespace Swaguin.ViewModels
 
         }
 
+        // Get et Set pour l'attribut LastName
         public string LastName
         {
             get { return contact.LastName; }
@@ -60,6 +70,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut Email
         public string Email
         {
             get { return contact.Email; }
@@ -73,6 +84,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut ImagePath
         public string ImagePath
         {
             set
@@ -90,6 +102,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut PhoneNumber
         public string PhoneNumber
         {
             set
@@ -107,6 +120,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut Birthdate
         public DateTime Birthdate
         {
             set
@@ -124,6 +138,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut Favorite
         public bool Favorite
         {
             set
@@ -141,6 +156,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get et Set pour l'attribut Gender
         public bool Gender
         {
             set
@@ -158,6 +174,7 @@ namespace Swaguin.ViewModels
             }
         }
 
+        // Get permetant de récupérer directement la variable contact
         internal Contact Model
         {
             get { return contact; }

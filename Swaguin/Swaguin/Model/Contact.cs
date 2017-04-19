@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// ==========================
+// Modèle de la table Contact
+// ==========================
+
 namespace Swaguin.Model
 {
     [Table("contact")]
