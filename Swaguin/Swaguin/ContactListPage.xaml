@@ -6,11 +6,11 @@
              x:Class="Swaguin.ContactListPage"
              xmlns:infrastructure="clr-namespace:XamarinUniversity.Infrastructure;assembly=XamU.Infrastructure"
 		     xmlns:viewModels="clr-namespace:Swaguin.ViewModels;assembly=Swaguin"
-             Title="Quotes" Icon = "ic_action_chat.png"
+             Title="Liste des Contacts" Icon = "icon.png"
              BindingContext="{infrastructure:DependencyService Type={x:Type viewModels:ContactListViewModel}}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Icon="ic_action_new.png" Command="{Binding AddContact}" />
+        <ToolbarItem Text="Add" Command="{Binding AddContact}" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
@@ -19,7 +19,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    
     <StackLayout>
         <SearchBar Placeholder="Filter" SearchCommand="{Binding FilterContactList}" Text="{Binding Filter}"></SearchBar>
         <ScrollView>

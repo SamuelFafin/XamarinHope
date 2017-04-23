@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content;
+//using Plugin.CurrentActivity;
+//using Plugin.Permissions;
+//using Plugin.Permissions.Abstractions;
 
 namespace Swaguin.Droid
 {
@@ -23,9 +26,17 @@ namespace Swaguin.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             string dbPath = FileAccessHelper.GetLocalFilePath("HopeDB.db3");
+            //CrossCurrentActivity.Current.Activity = activity;
 
             LoadApplication(new App(dbPath));
         }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            //PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+
     }
 }
 

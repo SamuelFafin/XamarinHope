@@ -11,6 +11,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Entry Text="{Binding FirstName, Mode=TwoWay}" Placeholder="First Name" Grid.Row="0"/>
@@ -18,6 +21,9 @@
         <Entry Text="{Binding Email, Mode=TwoWay}" Placeholder="Email" Grid.Row="2"/>
         <Entry Text="{Binding PhoneNumber, Mode=TwoWay}" Placeholder="PhoneNumber" Grid.Row="3"/>
         <Entry Text="{Binding ImagePath, Mode=TwoWay}" Placeholder="ImagePath" Grid.Row="4"/>
+        <Button x:Name="takePhoto" Clicked="TakePhoto" Text="Take Photo" Grid.Row="5"/>
+        <Button x:Name="pickPhoto" Clicked="PickPhoto" Text="Pick Photo" Grid.Row="6"/>
+        <Image x:Name="image" Grid.Row="7"/>
         <!--<Picker Title="Gender" Grid.Row="2">
             <Picker.Behaviors>
                 <inf:PickerBindBehavior Items="{Binding GenderChoices}" SelectedItem="{Binding Gender, Mode=TwoWay}" />
@@ -25,6 +31,6 @@
 
         </Picker>
         <Editor Text="{Binding Email, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" />-->
-        <Button Text="Done" Clicked="OnGoBack" Grid.Row="5" />
+        <Button Text="Done" Clicked="OnGoBack" Grid.Row="8" />
     </Grid>
 </ContentPage>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinUniversity.Interfaces;
+using Plugin.Media;
 
 // ========================================
 // ViewModel principal de l'application
@@ -39,6 +40,8 @@ namespace Swaguin.ViewModels
         public ICommand Call { get; private set; }
         public ICommand Sms { get; private set; }
         public ICommand FilterContactList { get; set; }
+
+        public ICommand TakePhoto { get; private set; }
 
 
         // Contact sélectionné dans l'application
@@ -81,6 +84,7 @@ namespace Swaguin.ViewModels
             SendEmail = new Command<ContactViewModel>(OnSendMail);
             Call = new Command<ContactViewModel>(OnCall);
             Sms = new Command<ContactViewModel>(OnSms);
+            TakePhoto = new Command(OnTakePhoto);
             FilterContactList = new Command(OnFilterContact);
         }
 
@@ -171,6 +175,33 @@ namespace Swaguin.ViewModels
         private void OnFilterContact()
         {
             Contacts = new ObservableCollection<ContactViewModel>(Contacts.Where((Contact) => Contact.FirstName.ToLower().Contains(Filter)));
+        }
+
+        private async void OnTakePhoto()
+        {
+            //await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+           ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
         }
     }
 }
